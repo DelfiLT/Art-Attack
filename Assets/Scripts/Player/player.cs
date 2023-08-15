@@ -6,6 +6,7 @@ public class player : MonoBehaviour
 {
     [SerializeField] private float velocity;
     [SerializeField] private float jumpForce;
+    private float movX;
 
     private bool isGrounded;
     private bool doubleJump;
@@ -17,17 +18,16 @@ public class player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update() { }
-
-    private void FixedUpdate()
+    void Update() 
     {
         Movement();
         Jump();
+        Flip();
     }
 
     void Movement()
     {
-        float movX = Input.GetAxis("Horizontal");
+        movX = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(movX * velocity, rb.velocity.y);
     }
 
@@ -45,6 +45,18 @@ public class player : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 doubleJump = false;
             }
+        }
+    }
+
+    void Flip()
+    {
+        if (movX > 0)
+        {
+            transform.localScale = new Vector3(2f, 2f, 2f);
+        }
+        if (movX < 0)
+        {
+            transform.localScale = new Vector3(-2f, 2f, 2f);
         }
     }
 

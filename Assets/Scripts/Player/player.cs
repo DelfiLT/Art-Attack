@@ -1,3 +1,4 @@
+using SuperMaxim.Messaging;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,7 @@ public class player : MonoBehaviour
         Movement();
         Jump();
         Flip();
+        ChangeColor();
     }
 
     void Movement()
@@ -66,6 +68,16 @@ public class player : MonoBehaviour
         {
             isGrounded = true;
             doubleJump = false;
+        }
+    }
+
+    void ChangeColor()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            var message = new ColorChange(Color.Red);
+
+            Messenger.Default.Publish(message);
         }
     }
 }

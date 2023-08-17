@@ -1,15 +1,23 @@
 using SuperMaxim.Messaging;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class player : MonoBehaviour
 {
-    [SerializeField] private float velocity;
-    [SerializeField] private float jumpForce;
+    private float currentVelocity;
+    private float currentJumpForce;
+
+    [Header("Default values")]
+    [SerializeField] private float defaultVelocity = 8;
+    [SerializeField] private float defaultJumpForce = 18;
+    [SerializeField] private float defaultGravity = 5;
+
+    [Header("Water values")]
+    [SerializeField] private float waterSpeedReduction = 3;
+
     private float movX;
 
     private bool isGrounded;
+    private bool isSwimming;
     private bool doubleJump;
 
     private Rigidbody2D rb;
@@ -17,6 +25,8 @@ public class player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        SetDefaultValues();
     }
 
     void Update() 
@@ -27,24 +37,40 @@ public class player : MonoBehaviour
         ChangeElement();
     }
 
+    private void SetDefaultValues()
+    {
+        rb.gravityScale = defaultGravity;
+        currentJumpForce = defaultJumpForce;
+        currentVelocity = defaultVelocity;
+    }
+
+    private void SetWaterValues()
+    {
+        rb.gravityScale = defaultGravity / waterSpeedReduction;
+        currentJumpForce = defaultJumpForce / waterSpeedReduction;
+        currentVelocity /= waterSpeedReduction;
+        
+        rb.velocity /= waterSpeedReduction;
+    }
+
     void Movement()
     {
         movX = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(movX * velocity, rb.velocity.y);
+        rb.velocity = new Vector2(movX * currentVelocity, rb.velocity.y);
     }
 
     void Jump()
     {
         if (Input.GetButtonDown("Jump"))
         {
-            if(isGrounded)
+            if(isGrounded || isSwimming)
             {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                rb.velocity = new Vector2(rb.velocity.x, currentJumpForce);
                 isGrounded = false;
                 doubleJump = true;
             } else if (doubleJump)
             {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                rb.velocity = new Vector2(rb.velocity.x, currentJumpForce);
                 doubleJump = false;
             }
         }
@@ -68,6 +94,24 @@ public class player : MonoBehaviour
         {
             isGrounded = true;
             doubleJump = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Water"))
+        {
+            isSwimming = true;
+            SetWaterValues();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Water"))
+        {
+            isSwimming = false;
+            SetDefaultValues();
         }
     }
 

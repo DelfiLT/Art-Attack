@@ -24,7 +24,7 @@ public class player : MonoBehaviour
         Movement();
         Jump();
         Flip();
-        ChangeColor();
+        ChangeElement();
     }
 
     void Movement()
@@ -71,11 +71,17 @@ public class player : MonoBehaviour
         }
     }
 
-    void ChangeColor()
+    void ChangeElement()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            var message = new ColorChange(Color.Red);
+            var message = new ElementChange(Element.Ice);
+
+            Messenger.Default.Publish(message);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            var message = new ElementChange(Element.Water);
 
             Messenger.Default.Publish(message);
         }

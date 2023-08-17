@@ -1,15 +1,15 @@
-﻿public class ColorChange
+﻿public class ElementChange
 {
-    public Color Color;
+    public Element Element;
 
-    public ColorChange(Color color)
+    public ElementChange(Element element)
     {
-        Color = color;
+        Element = element;
     }
 }
 
-public enum Color
+public enum Element
 {
-    Red,
-    Green
+    Ice,
+    Water
 }

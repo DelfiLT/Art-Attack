@@ -39,6 +39,8 @@ public class platform : MonoBehaviour
         water.SetActive(false);
         yield return new WaitForSeconds(10f);
         Debug.Log("Volvio a su estado");
+        ice.SetActive(false);
+        water.SetActive(true);
     }
 
     IEnumerator ChangeToWater()
@@ -48,5 +50,7 @@ public class platform : MonoBehaviour
         water.SetActive(true);
         yield return new WaitForSeconds(10f);
         Debug.Log("Volvio a su estado");
+        ice.SetActive(true);
+        water.SetActive(false);
     }
 }

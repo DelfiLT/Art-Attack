@@ -2,7 +2,7 @@ using SuperMaxim.Messaging;
 using System.Collections;
 using UnityEngine;
 
-public class platform : MonoBehaviour
+public class PlatformController : MonoBehaviour
 {
     [Header("Platform types")]
     [SerializeField] private GameObject ice;

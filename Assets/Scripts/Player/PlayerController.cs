@@ -1,7 +1,7 @@
 using SuperMaxim.Messaging;
 using UnityEngine;
 
-public class player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private float currentVelocity;
     private float currentJumpForce;

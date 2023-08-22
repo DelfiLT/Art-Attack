@@ -2,12 +2,13 @@ using SuperMaxim.Messaging;
 using System.Collections;
 using UnityEngine;
 
-public class platform : MonoBehaviour
+public class PlatformController : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject ice;
-    [SerializeField]
-    private GameObject water;
+    [Header("Platform types")]
+    [SerializeField] private GameObject ice;
+    [SerializeField] private GameObject water;
+    [Header("Platform values")]
+    [SerializeField] private float changeTime;
 
     void Start()
     {
@@ -34,22 +35,18 @@ public class platform : MonoBehaviour
 
     IEnumerator ChangeToIce()
     {
-        Debug.Log("Elemento cambiado a hielo");
         ice.SetActive(true);
         water.SetActive(false);
-        yield return new WaitForSeconds(10f);
-        Debug.Log("Volvio a su estado");
+        yield return new WaitForSeconds(changeTime);
         ice.SetActive(false);
         water.SetActive(true);
     }
 
     IEnumerator ChangeToWater()
     {
-        Debug.Log("Elemento cambiado a awa");
         ice.SetActive(false);
         water.SetActive(true);
-        yield return new WaitForSeconds(10f);
-        Debug.Log("Volvio a su estado");
+        yield return new WaitForSeconds(changeTime);
         ice.SetActive(true);
         water.SetActive(false);
     }

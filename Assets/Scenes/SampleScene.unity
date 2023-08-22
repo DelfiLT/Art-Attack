@@ -1140,6 +1140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ice: {fileID: 48118919}
   water: {fileID: 1831399870}
+  changeTime: 3
 --- !u!1 &438243487
 GameObject:
   m_ObjectHideFlags: 0
@@ -5941,6 +5942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ice: {fileID: 1630512795}
   water: {fileID: 1229112014}
+  changeTime: 0
 --- !u!4 &2051665375
 Transform:
   m_ObjectHideFlags: 0

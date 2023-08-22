@@ -10,6 +10,7 @@ public class SceneController : MonoBehaviour
         if (Instance is null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {

@@ -10,11 +10,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float defaultVelocity = 8;
     [SerializeField] private float defaultJumpForce = 18;
     [SerializeField] private float defaultGravity = 5;
+    [SerializeField] private float defaultCooldown = 5;
 
     [Header("Water values")]
     [SerializeField] private float waterSpeedReduction = 3;
 
+    [Header("Spawn")]
+    [SerializeField] private GameObject earthBlock;
+    [SerializeField] private Transform earthSpawn;
+
     private float movX;
+    private float time;
 
     private bool isGrounded;
     private bool isSwimming;
@@ -34,7 +40,13 @@ public class PlayerController : MonoBehaviour
         Movement();
         Jump();
         Flip();
-        ChangeElement();
+
+        time += Time.deltaTime;
+
+        if(time >= defaultCooldown)
+        {
+            ChangeElement();
+        }
     }
 
     private void SetDefaultValues()
@@ -119,15 +131,24 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            var message = new ElementChange(Element.Ice);
-
-            Messenger.Default.Publish(message);
+            GameObject newBlock = Instantiate(earthBlock, earthSpawn.position, earthSpawn.rotation);
+            time = 0;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             var message = new ElementChange(Element.Water);
 
             Messenger.Default.Publish(message);
+
+            time = 0;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            var message = new ElementChange(Element.Ice);
+
+            Messenger.Default.Publish(message);
+
+            time = 0;
         }
     }
 }

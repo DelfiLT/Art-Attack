@@ -11,5 +11,5 @@
 public enum Element
 {
     Ice,
-    Water
+    Water,
 }

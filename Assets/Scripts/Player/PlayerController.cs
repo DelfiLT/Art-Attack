@@ -10,15 +10,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float defaultVelocity = 8;
     [SerializeField] private float defaultJumpForce = 18;
     [SerializeField] private float defaultGravity = 5;
+    [SerializeField] private float defaultCooldown = 5;
 
     [Header("Water values")]
     [SerializeField] private float waterSpeedReduction = 3;
 
+    [Header("Spawn")]
+    [SerializeField] private GameObject earthBlock;
+    [SerializeField] private Transform earthSpawn;
+
     private float movX;
+    private float time;
 
     private bool isGrounded;
     private bool isSwimming;
     private bool doubleJump;
+    private bool onBlock;
 
     private Rigidbody2D rb;
 
@@ -34,7 +41,13 @@ public class PlayerController : MonoBehaviour
         Movement();
         Jump();
         Flip();
-        ChangeElement();
+
+        time += Time.deltaTime;
+
+        if(time >= defaultCooldown)
+        {
+            ChangeElement();
+        }
     }
 
     private void SetDefaultValues()
@@ -63,11 +76,12 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
-            if(isGrounded || isSwimming)
+            if(isGrounded || isSwimming || onBlock)
             {
                 rb.velocity = new Vector2(rb.velocity.x, currentJumpForce);
                 isGrounded = false;
                 doubleJump = true;
+                onBlock = false;
             } else if (doubleJump)
             {
                 rb.velocity = new Vector2(rb.velocity.x, currentJumpForce);
@@ -88,12 +102,28 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void ChangeElement()
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && isGrounded)
         {
-            isGrounded = true;
-            doubleJump = false;
+            GameObject newBlock = Instantiate(earthBlock, earthSpawn.position, earthSpawn.rotation);
+            time = 0;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            var message = new ElementChange(Element.Water);
+
+            Messenger.Default.Publish(message);
+
+            time = 0;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            var message = new ElementChange(Element.Ice);
+
+            Messenger.Default.Publish(message);
+
+            time = 0;
         }
     }
 
@@ -115,19 +145,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void ChangeElement()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (collision.gameObject.CompareTag("Ground"))
         {
-            var message = new ElementChange(Element.Ice);
-
-            Messenger.Default.Publish(message);
+            isGrounded = true;
+            doubleJump = false;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (collision.gameObject.CompareTag("Block"))
         {
-            var message = new ElementChange(Element.Water);
-
-            Messenger.Default.Publish(message);
+            onBlock = true;
         }
     }
 }

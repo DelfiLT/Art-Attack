@@ -1026,6 +1026,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 575268153}
+  - {fileID: 696194543}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1091,7 +1092,10 @@ MonoBehaviour:
   defaultVelocity: 8
   defaultJumpForce: 18
   defaultGravity: 5
+  habilityCooldown: 0
   waterSpeedReduction: 4
+  earthBlock: {fileID: 1026452799355709974, guid: e23f74be7d3209549a82dbdaaae2b23a, type: 3}
+  earthSpawn: {fileID: 696194543}
 --- !u!1 &216507192
 GameObject:
   m_ObjectHideFlags: 0
@@ -1123,11 +1127,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   headerSettings:
     headerText: LIGHTS
-    headerColor: {r: 0.9596504, g: 1, b: 0, a: 1}
+    headerColor: {r: 0.8983624, g: 0.9245283, b: 0.25729796, a: 1}
     textAlignmentOptions: 0
     fontStyleOptions: 0
     fontSize: 12
-    fontColor: {r: 0, g: 0, b: 0, a: 1}
+    fontColor: {r: 0, g: 0, b: 0, a: 0.8392157}
     dropShadow: 0
 --- !u!4 &216507194
 Transform:
@@ -1175,11 +1179,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   headerSettings:
     headerText: Managers
-    headerColor: {r: 0.109677315, g: 0, b: 1, a: 1}
+    headerColor: {r: 0.3665516, g: 0.30936277, b: 0.8301887, a: 1}
     textAlignmentOptions: 0
     fontStyleOptions: 0
     fontSize: 12
-    fontColor: {r: 0, g: 0, b: 0, a: 1}
+    fontColor: {r: 0, g: 0, b: 0, a: 0.8392157}
     dropShadow: 0
 --- !u!4 &308046384
 Transform:
@@ -1233,7 +1237,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 317109347}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.6510761, y: -0.747145, z: 0.06551607}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1739,6 +1743,37 @@ Transform:
   - {fileID: 1607934273}
   m_Father: {fileID: 0}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &696194542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 696194543}
+  m_Layer: 0
+  m_Name: GroundSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &696194543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696194542}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.65, y: -0.04, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 140156591}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &795141768
 GameObject:
@@ -4890,11 +4925,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   headerSettings:
     headerText: Map
-    headerColor: {r: 0.24126458, g: 1, b: 0, a: 1}
+    headerColor: {r: 0.50018716, g: 0.9150943, b: 0.366901, a: 1}
     textAlignmentOptions: 0
     fontStyleOptions: 0
     fontSize: 12
-    fontColor: {r: 0, g: 0, b: 0, a: 1}
+    fontColor: {r: 0, g: 0, b: 0, a: 0.8392157}
     dropShadow: 0
 --- !u!4 &893053564
 Transform:
@@ -4942,11 +4977,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   headerSettings:
     headerText: Cameras
-    headerColor: {r: 1, g: 0, b: 0.0065193176, a: 1}
+    headerColor: {r: 0.990566, g: 0.3037113, b: 0.3090983, a: 1}
     textAlignmentOptions: 0
     fontStyleOptions: 0
     fontSize: 12
-    fontColor: {r: 0, g: 0, b: 0, a: 1}
+    fontColor: {r: 0, g: 0, b: 0, a: 0.8392157}
     dropShadow: 0
 --- !u!4 &966001098
 Transform:
@@ -4994,11 +5029,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   headerSettings:
     headerText: PLAYER
-    headerColor: {r: 0.7569432, g: 0, b: 1, a: 1}
+    headerColor: {r: 0.8962264, g: 0.28324133, b: 0.7128338, a: 1}
     textAlignmentOptions: 0
     fontStyleOptions: 0
     fontSize: 12
-    fontColor: {r: 0, g: 0, b: 0, a: 1}
+    fontColor: {r: 0, g: 0, b: 0, a: 0.8392157}
     dropShadow: 0
 --- !u!4 &1231492695
 Transform:

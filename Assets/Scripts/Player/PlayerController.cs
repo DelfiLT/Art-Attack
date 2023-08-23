@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private bool isSwimming;
     private bool doubleJump;
+    private bool onBlock;
 
     private Rigidbody2D rb;
 
@@ -75,11 +76,12 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
-            if(isGrounded || isSwimming)
+            if(isGrounded || isSwimming || onBlock)
             {
                 rb.velocity = new Vector2(rb.velocity.x, currentJumpForce);
                 isGrounded = false;
                 doubleJump = true;
+                onBlock = false;
             } else if (doubleJump)
             {
                 rb.velocity = new Vector2(rb.velocity.x, currentJumpForce);
@@ -100,12 +102,28 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void ChangeElement()
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && isGrounded)
         {
-            isGrounded = true;
-            doubleJump = false;
+            GameObject newBlock = Instantiate(earthBlock, earthSpawn.position, earthSpawn.rotation);
+            time = 0;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            var message = new ElementChange(Element.Water);
+
+            Messenger.Default.Publish(message);
+
+            time = 0;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            var message = new ElementChange(Element.Ice);
+
+            Messenger.Default.Publish(message);
+
+            time = 0;
         }
     }
 
@@ -127,28 +145,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void ChangeElement()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (collision.gameObject.CompareTag("Ground"))
         {
-            GameObject newBlock = Instantiate(earthBlock, earthSpawn.position, earthSpawn.rotation);
-            time = 0;
+            isGrounded = true;
+            doubleJump = false;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (collision.gameObject.CompareTag("Block"))
         {
-            var message = new ElementChange(Element.Water);
-
-            Messenger.Default.Publish(message);
-
-            time = 0;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            var message = new ElementChange(Element.Ice);
-
-            Messenger.Default.Publish(message);
-
-            time = 0;
+            onBlock = true;
         }
     }
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3170011436987899241}
   m_Layer: 0
   m_Name: EarthBlock
-  m_TagString: Ground
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

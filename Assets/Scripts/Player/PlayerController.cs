@@ -6,6 +6,9 @@ public class PlayerController : MonoBehaviour
     private float currentVelocity;
     private float currentJumpForce;
 
+    [Header("General Settings")]
+    [SerializeField] private bool canDoubleJump;
+
     [Header("Default values")]
     [SerializeField] private float defaultVelocity = 8;
     [SerializeField] private float defaultJumpForce = 18;
@@ -34,6 +37,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         SetDefaultValues();
+
+        time = 5;
     }
 
     void Update() 
@@ -82,7 +87,7 @@ public class PlayerController : MonoBehaviour
                 isGrounded = false;
                 doubleJump = true;
                 onBlock = false;
-            } else if (doubleJump)
+            } else if (canDoubleJump && doubleJump)
             {
                 rb.velocity = new Vector2(rb.velocity.x, currentJumpForce);
                 doubleJump = false;
@@ -94,11 +99,11 @@ public class PlayerController : MonoBehaviour
     {
         if (movX > 0)
         {
-            transform.localScale = new Vector3(2f, 2f, 2f);
+            transform.localScale = new Vector3(1f, 1f, 1f);
         }
         if (movX < 0)
         {
-            transform.localScale = new Vector3(-2f, 2f, 2f);
+            transform.localScale = new Vector3(-1f, 1f, 1f);
         }
     }
 
@@ -155,6 +160,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Block"))
         {
             onBlock = true;
+            isGrounded = true;
         }
     }
 }

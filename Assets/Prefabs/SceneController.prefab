@@ -46,4 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelsList:
   - Menu
-  - Level1
+  - scene_ice_01
+  - scene_ice_02

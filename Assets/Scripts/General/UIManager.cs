@@ -14,6 +14,11 @@ public class UIManager : MonoBehaviour
         Messenger.Default.Subscribe<PlayerDeathMessage>(HandlePlayerDeat);
     }
 
+    private void OnDestroy()
+    {
+        Messenger.Default.Unsubscribe<PlayerDeathMessage>(HandlePlayerDeat);
+    }
+
     private void HandlePlayerDeat(PlayerDeathMessage message)
     {
         HUDPanel.SetActive(false);

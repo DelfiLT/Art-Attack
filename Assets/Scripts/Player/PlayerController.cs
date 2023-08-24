@@ -1,6 +1,7 @@
 using SuperMaxim.Messaging;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
     private float currentVelocity;
@@ -30,6 +31,9 @@ public class PlayerController : MonoBehaviour
     private bool doubleJump;
     private bool onBlock;
 
+    Power earthPower;
+    //Power icePower;
+
     private Rigidbody2D rb;
 
     void Start()
@@ -37,6 +41,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         SetDefaultValues();
+
+        //earthPower = GetComponent<EarthPower>();
 
         time = 5;
     }
@@ -109,23 +115,24 @@ public class PlayerController : MonoBehaviour
 
     void ChangeElement()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && earthPower.CanUse())
         {
-            GameObject newBlock = Instantiate(earthBlock, earthSpawn.position, earthSpawn.rotation);
-            time = 0;
+            earthPower.Use();
+            //Mover a nueva Clase EarthPower
+            //GameObject newBlock = Instantiate(earthBlock, earthSpawn.position, earthSpawn.rotation);
+            //time = 0;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             var message = new ElementChange(Element.Water);
 
             Messenger.Default.Publish(message);
-
             time = 0;
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
+            //Hacer lo mismo con IcePower
             var message = new ElementChange(Element.Ice);
-
             Messenger.Default.Publish(message);
 
             time = 0;

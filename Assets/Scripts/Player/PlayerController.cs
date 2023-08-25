@@ -19,20 +19,14 @@ public class PlayerController : MonoBehaviour
     [Header("Water values")]
     [SerializeField] private float waterSpeedReduction = 3;
 
-    [Header("Spawn")]
-    [SerializeField] private GameObject earthBlock;
-    [SerializeField] private Transform earthSpawn;
-
     private float movX;
-    private float time;
 
     private bool isGrounded;
     private bool isSwimming;
     private bool doubleJump;
-    private bool onBlock;
 
-    Power earthPower;
-    //Power icePower;
+    EarthPower earthPower;
+    IcePower icePower;
 
     private Rigidbody2D rb;
 
@@ -42,9 +36,8 @@ public class PlayerController : MonoBehaviour
 
         SetDefaultValues();
 
-        //earthPower = GetComponent<EarthPower>();
-
-        time = 5;
+        earthPower = GetComponent<EarthPower>();
+        icePower = GetComponent<IcePower>();
     }
 
     void Update() 
@@ -52,13 +45,7 @@ public class PlayerController : MonoBehaviour
         Movement();
         Jump();
         Flip();
-
-        time += Time.deltaTime;
-
-        if(time >= defaultCooldown)
-        {
-            ChangeElement();
-        }
+        ChangeElement();
     }
 
     private void SetDefaultValues()
@@ -87,12 +74,11 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
-            if(isGrounded || isSwimming || onBlock)
+            if(isGrounded || isSwimming)
             {
                 rb.velocity = new Vector2(rb.velocity.x, currentJumpForce);
                 isGrounded = false;
                 doubleJump = true;
-                onBlock = false;
             } else if (canDoubleJump && doubleJump)
             {
                 rb.velocity = new Vector2(rb.velocity.x, currentJumpForce);
@@ -115,27 +101,13 @@ public class PlayerController : MonoBehaviour
 
     void ChangeElement()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) )//&& earthPower.CanUse())
+        if (Input.GetKeyDown(KeyCode.Alpha1) && !earthPower.CanUse())
         {
-            //earthPower.Use();
-            //Mover a nueva Clase EarthPower
-            GameObject newBlock = Instantiate(earthBlock, earthSpawn.position, earthSpawn.rotation);
-            time = 0;
+            earthPower.Use();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2) && !icePower.CanUse())
         {
-            var message = new ElementChange(Element.Water);
-
-            Messenger.Default.Publish(message);
-            time = 0;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            //Hacer lo mismo con IcePower
-            var message = new ElementChange(Element.Ice);
-            Messenger.Default.Publish(message);
-
-            time = 0;
+            icePower.Use();
         }
     }
 
@@ -163,11 +135,6 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = true;
             doubleJump = false;
-        }
-        if (collision.gameObject.CompareTag("Block"))
-        {
-            onBlock = true;
-            isGrounded = true;
         }
     }
 }

@@ -97,6 +97,8 @@ GameObject:
   - component: {fileID: 403446442342815116}
   - component: {fileID: 403446442342815117}
   - component: {fileID: 3780699020568163124}
+  - component: {fileID: 7139473542627425031}
+  - component: {fileID: 8049858960338508824}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -176,8 +178,6 @@ MonoBehaviour:
   defaultGravity: 5
   defaultCooldown: 1
   waterSpeedReduction: 4
-  earthBlock: {fileID: 3316962429862238150, guid: 8a10149c0a3d0de439fc03f80ca1c36b, type: 3}
-  earthSpawn: {fileID: 403446442860519120}
 --- !u!114 &3780699020568163124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +190,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6d7d6188cd49ee4b8ba892a70ce80ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7139473542627425031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403446442342815122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c54180fdf17d3f4c8e971bfc1532828, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownTime: 5
+  earthBlock: {fileID: 3316962429862238150, guid: 8a10149c0a3d0de439fc03f80ca1c36b, type: 3}
+  earthSpawn: {fileID: 403446442860519120}
+--- !u!114 &8049858960338508824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403446442342815122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0bf7fe1eef3b5d48b9a0bf9d92e23a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownTime: 2
 --- !u!1 &403446442860519121
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,17 +2,14 @@
 using UnityEngine;
 
 public abstract class Power : MonoBehaviour
-    {
-    [SerializeField]
-    private float cooldownTime;
+{
+    [SerializeField] private float cooldownTime;
 
     bool inCooldown = false;
 
-    IEnumerator StartCooldown()
+    public virtual void Use()
     {
-        inCooldown = true;
-        yield return new WaitForSeconds(cooldownTime);
-        inCooldown = false;
+        StartCoroutine(StartCooldown());
     }
 
     public virtual bool CanUse()
@@ -20,8 +17,10 @@ public abstract class Power : MonoBehaviour
         return inCooldown;
     }
 
-    public virtual void Use()
+    IEnumerator StartCooldown()
     {
-        StartCoroutine(StartCooldown());
+        inCooldown = true;
+        yield return new WaitForSeconds(cooldownTime);
+        inCooldown = false;
     }
 }

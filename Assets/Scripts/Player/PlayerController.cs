@@ -115,12 +115,12 @@ public class PlayerController : MonoBehaviour
 
     void ChangeElement()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && earthPower.CanUse())
+        if (Input.GetKeyDown(KeyCode.Alpha1) )//&& earthPower.CanUse())
         {
-            earthPower.Use();
+            //earthPower.Use();
             //Mover a nueva Clase EarthPower
-            //GameObject newBlock = Instantiate(earthBlock, earthSpawn.position, earthSpawn.rotation);
-            //time = 0;
+            GameObject newBlock = Instantiate(earthBlock, earthSpawn.position, earthSpawn.rotation);
+            time = 0;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {

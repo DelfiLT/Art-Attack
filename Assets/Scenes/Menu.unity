@@ -216,7 +216,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level1
+          m_StringArgument: scene_ice_01
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &38935416
@@ -572,6 +572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08a731a3f00d4484d8d460ee5b8e5a5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelsList: []
 --- !u!1 &1217708369
 GameObject:
   m_ObjectHideFlags: 0

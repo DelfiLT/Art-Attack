@@ -5,6 +5,8 @@ public abstract class Power : MonoBehaviour
 {
     [SerializeField] private float cooldownTime;
 
+    public float CooldownTime { get { return cooldownTime; } }
+
     bool inCooldown = false;
 
     public virtual void Use()

@@ -104,10 +104,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1) && !earthPower.CanUse())
         {
             earthPower.Use();
+            Messenger.Default.Publish(new PowerCooldownMessage(earthPower.CooldownTime, PowerType.Earth));
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) && !icePower.CanUse())
         {
             icePower.Use();
+            Messenger.Default.Publish(new PowerCooldownMessage(icePower.CooldownTime, PowerType.Ice));
         }
     }
 

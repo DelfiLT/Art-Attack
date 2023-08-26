@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ice/scene_ice_01.unity
     guid: b6d12fc88d929e4449a835f921794dfe
+  - enabled: 1
+    path: Assets/Scenes/Ice/scene_ice_02.unity
+    guid: 1221efec034e455489d0a6a9a392c50f
   m_configObjects: {}

@@ -63,10 +63,7 @@ public class SceneController : MonoBehaviour
 
     private void CheckCurrentLevel()
     {
-        if (string.IsNullOrEmpty(currentLevel))
-        {
-            currentLevel = SceneManager.GetActiveScene().name;
-        }
+        currentLevel = SceneManager.GetActiveScene().name;
     }
 
     public void QuitGame()

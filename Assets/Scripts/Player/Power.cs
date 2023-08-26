@@ -7,6 +7,8 @@ public abstract class Power : MonoBehaviour
     [SerializeField] private KeyCode key;
 
 
+    public float CooldownTime { get { return cooldownTime; } }
+
     bool inCooldown = false;
 
     public virtual void Use()

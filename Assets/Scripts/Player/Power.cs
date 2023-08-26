@@ -4,6 +4,8 @@ using UnityEngine;
 public abstract class Power : MonoBehaviour
 {
     [SerializeField] private float cooldownTime;
+    [SerializeField] private KeyCode key;
+
 
     bool inCooldown = false;
 
@@ -14,7 +16,7 @@ public abstract class Power : MonoBehaviour
 
     public virtual bool CanUse()
     {
-        return inCooldown;
+        return !inCooldown;
     }
 
     IEnumerator StartCooldown()
@@ -22,5 +24,13 @@ public abstract class Power : MonoBehaviour
         inCooldown = true;
         yield return new WaitForSeconds(cooldownTime);
         inCooldown = false;
+    }
+
+    protected void Update()
+    {
+        if (Input.GetKeyDown(key) && CanUse())
+        {
+            Use();
+        }
     }
 }

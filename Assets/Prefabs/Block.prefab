@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3765911583015004723}
   - component: {fileID: 5782019553276964446}
   - component: {fileID: 2251871181710343915}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EarthBlock
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 3316962429862238147}
   - component: {fileID: 3316962429862238149}
   - component: {fileID: -5281467177481865123}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Block
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ Transform:
   m_GameObject: {fileID: 3316962429862238150}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9958475, y: 0.9958475, z: 0.9958475}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3765911583015004723}

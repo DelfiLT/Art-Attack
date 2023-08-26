@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using SuperMaxim.Messaging;
+using System.Collections;
 using UnityEngine;
 
 public abstract class Power : MonoBehaviour
 {
     [SerializeField] private float cooldownTime;
     [SerializeField] private KeyCode key;
+    [SerializeField] private PowerType power;
 
 
     public float CooldownTime { get { return cooldownTime; } }
@@ -14,6 +16,7 @@ public abstract class Power : MonoBehaviour
     public virtual void Use()
     {
         StartCoroutine(StartCooldown());
+        Messenger.Default.Publish(new PowerCooldownMessage(cooldownTime, power));
     }
 
     public virtual bool CanUse()

@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 7139473542627425031}
   - component: {fileID: 8049858960338508824}
   - component: {fileID: 373740529}
+  - component: {fileID: 140156597}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -163,6 +164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownTime: 5
+  key: 49
+  power: 0
   earthBlock: {fileID: 3316962429862238150, guid: 8a10149c0a3d0de439fc03f80ca1c36b, type: 3}
   earthSpawn: {fileID: 403446442860519120}
 --- !u!114 &8049858960338508824
@@ -178,6 +181,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownTime: 2
+  key: 50
+  power: 1
 --- !u!114 &373740529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,18 +205,39 @@ MonoBehaviour:
   _detectionRayLength: 0.2
   _rayBuffer: 0.1
   _acceleration: 90
-  _moveClamp: 13
+  _moveClamp: 8
   _deAcceleration: 60
   _apexBonus: 2
   _fallClamp: -40
-  _minFallSpeed: 80
-  _maxFallSpeed: 120
-  _jumpHeight: 30
+  _minFallSpeed: 40
+  _maxFallSpeed: 80
+  _jumpHeight: 18
   _jumpApexThreshold: 10
   _coyoteTimeThreshold: 0.1
   _jumpBuffer: 0.1
-  _jumpEndEarlyGravityModifier: 3
+  _jumpEndEarlyGravityModifier: 5
   _freeColliderIterations: 10
+--- !u!50 &140156597
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403446442342815122}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &403446442860519121
 GameObject:
   m_ObjectHideFlags: 0

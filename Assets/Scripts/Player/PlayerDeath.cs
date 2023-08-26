@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class PlayerDeath : MonoBehaviour
 {
-    private PlayerController playerController;
+    private TarodevController.PlayerController playerController;
 
     void Start()
     {
-        playerController = GetComponent<PlayerController>();
+        playerController = GetComponent<TarodevController.PlayerController>();
     }
 
 

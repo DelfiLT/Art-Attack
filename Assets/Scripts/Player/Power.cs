@@ -4,36 +4,23 @@ using UnityEngine;
 
 public abstract class Power : MonoBehaviour
 {
-    [SerializeField] private float cooldownTime;
     [SerializeField] private KeyCode key;
-    [SerializeField] private PowerType power;
+    //[SerializeField] private PowerType power;
+    private PlayerMana playerMana;
 
-
-    public float CooldownTime { get { return cooldownTime; } }
-
-    bool inCooldown = false;
-
-    public virtual void Use()
+    private void Start()
     {
-        StartCoroutine(StartCooldown());
-        Messenger.Default.Publish(new PowerCooldownMessage(cooldownTime, power));
+        playerMana = GetComponent<PlayerMana>();
     }
 
-    public virtual bool CanUse()
+    public virtual void Use() 
     {
-        return !inCooldown;
-    }
-
-    IEnumerator StartCooldown()
-    {
-        inCooldown = true;
-        yield return new WaitForSeconds(cooldownTime);
-        inCooldown = false;
+        playerMana.ManaQuantity--;
     }
 
     protected void Update()
     {
-        if (Input.GetKeyDown(key) && CanUse())
+        if (Input.GetKeyDown(key) && playerMana.ManaQuantity > 0)
         {
             Use();
         }

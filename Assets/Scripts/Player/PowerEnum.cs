@@ -1,5 +1,5 @@
-﻿public enum PowerType
-{
-    Earth,
-    Ice
-}
+﻿//public enum PowerType
+//{
+//    Earth,
+//    Ice
+//}

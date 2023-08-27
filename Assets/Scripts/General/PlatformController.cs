@@ -1,5 +1,6 @@
 using SuperMaxim.Messaging;
 using System.Collections;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class PlatformController : MonoBehaviour
@@ -9,9 +10,14 @@ public class PlatformController : MonoBehaviour
     [SerializeField] private GameObject water;
     [Header("Platform values")]
     [SerializeField] private float changeTime;
+    [SerializeField] private PlatformType platformType;
+
+    private PlatformTrigger platformTrigger;
 
     void Start()
     {
+        platformTrigger = GetComponent<PlatformTrigger>();
+
         Messenger.Default.Subscribe<ElementChangeMessage>(HandleChangeElement);
     }
 
@@ -22,7 +28,7 @@ public class PlatformController : MonoBehaviour
 
     void HandleChangeElement(ElementChangeMessage message)
     {
-        if(message.Element == PowerType.Ice)
+        if (message.Element == PowerType.Ice && platformType == PlatformType.Water)
         {
             StartCoroutine(ChangeToIce());
         }

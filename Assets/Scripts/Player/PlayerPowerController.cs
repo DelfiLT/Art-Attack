@@ -1,3 +1,4 @@
+using SuperMaxim.Messaging;
 using UnityEngine;
 
 public class PlayerPowerController : MonoBehaviour
@@ -11,6 +12,7 @@ public class PlayerPowerController : MonoBehaviour
     private void Start()
     {
         mana = maxMana;
+        Messenger.Default.Publish(new ManaChangeMessage(mana));
     }
 
     public void SetCurrentPower(Power power)
@@ -28,6 +30,7 @@ public class PlayerPowerController : MonoBehaviour
         {
             currentPower.Use();
             mana--;
+            Messenger.Default.Publish(new ManaChangeMessage(mana));
         }
     }
 }

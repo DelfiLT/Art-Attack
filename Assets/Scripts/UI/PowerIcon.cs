@@ -11,10 +11,10 @@ public class PowerIcon : MonoBehaviour
     [SerializeField]
     private PowerType Power;
 
-    private bool inCooldown;
+    //private bool inCooldown;
     private float cooldownTime;
 
-    private float time;
+    //private float time;
 
     void Start()
     {
@@ -46,8 +46,8 @@ public class PowerIcon : MonoBehaviour
 
     private IEnumerator StartCooldown()
     {
-        inCooldown = true;
+        //inCooldown = true;
         yield return new WaitForSeconds(cooldownTime);
-        inCooldown = false;
+        //inCooldown = false;
     }
 }

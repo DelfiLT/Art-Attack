@@ -12,25 +12,25 @@ public class PlatformController : MonoBehaviour
 
     void Start()
     {
-        Messenger.Default.Subscribe<ElementChange>(HandleChangeElement);
+        Messenger.Default.Subscribe<ElementChangeMessage>(HandleChangeElement);
     }
 
     private void OnDestroy()
     {
-        Messenger.Default.Unsubscribe<ElementChange>(HandleChangeElement);
+        Messenger.Default.Unsubscribe<ElementChangeMessage>(HandleChangeElement);
     }
 
-    void HandleChangeElement(ElementChange message)
+    void HandleChangeElement(ElementChangeMessage message)
     {
-        if(message.Element == Element.Ice)
+        if(message.Element == PowerType.Ice)
         {
             StartCoroutine(ChangeToIce());
         }
 
-        if (message.Element == Element.Water)
-        {
-            StartCoroutine(ChangeToWater());
-        }
+        //if (message.Element == PowerType.Water)
+        //{
+        //    StartCoroutine(ChangeToWater());
+        //}
     }
 
     IEnumerator ChangeToIce()

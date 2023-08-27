@@ -1,28 +1,46 @@
 ﻿using SuperMaxim.Messaging;
-using System.Collections;
 using UnityEngine;
 
 public abstract class Power : MonoBehaviour
 {
     [SerializeField] private KeyCode key;
-    //[SerializeField] private PowerType power;
-    private PlayerMana playerMana;
+    [SerializeField] private PowerType power;
+    private PlayerPowerController controller;
+
+    private bool isEnabled;
 
     private void Start()
     {
-        playerMana = GetComponent<PlayerMana>();
+        controller = GetComponent<PlayerPowerController>();
     }
 
-    public virtual void Use() 
+    public void Set()
     {
-        playerMana.ManaQuantity--;
+        controller.SetCurrentPower(this);
+        Messenger.Default.Publish(new PowerEnableMessage(power, true));
+        isEnabled = true;
     }
+
+    public void Unset()
+    {
+        Messenger.Default.Publish(new PowerEnableMessage(power, false));
+        isEnabled = false;
+    }
+
+    public abstract void Use();
 
     protected void Update()
     {
-        if (Input.GetKeyDown(key) && playerMana.ManaQuantity > 0)
+        if (Input.GetKeyDown(key))
         {
-            Use();
+            if (!isEnabled)
+            {
+                Set();
+            }
+            else
+            {
+                Unset();
+            }
         }
     }
 }

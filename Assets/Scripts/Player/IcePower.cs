@@ -7,8 +7,7 @@ public class IcePower : Power
 {
     public override void Use()
     {
-        base.Use();
-        var message = new ElementChange(Element.Ice);
+        var message = new ElementChangeMessage(PowerType.Ice);
         Messenger.Default.Publish(message);
     }
 }

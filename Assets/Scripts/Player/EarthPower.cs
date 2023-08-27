@@ -8,7 +8,6 @@ public class EarthPower : Power
     
     public override void Use()
     {
-        base.Use();
         GameObject newBlock = Instantiate(earthBlock, earthSpawn.position, earthSpawn.rotation);
     }
 }

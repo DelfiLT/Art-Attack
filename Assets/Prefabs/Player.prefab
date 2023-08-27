@@ -164,7 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9409b12abaf3443408db6ad7f3eea754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaQuantity: 0
+  maxMana: 3
+  key: 304
 --- !u!114 &7139473542627425031
 MonoBehaviour:
   m_ObjectHideFlags: 0

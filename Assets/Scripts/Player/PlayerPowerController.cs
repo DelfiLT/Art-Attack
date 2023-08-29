@@ -1,3 +1,4 @@
+using FMODUnity;
 using SuperMaxim.Messaging;
 using UnityEngine;
 
@@ -5,6 +6,7 @@ public class PlayerPowerController : MonoBehaviour
 {
     [SerializeField] int maxMana = 3;
     [SerializeField] KeyCode key = KeyCode.LeftShift;
+    FMOD.Studio.EventInstance ManaOutSound;
 
     int mana;
     Power currentPower;
@@ -31,6 +33,13 @@ public class PlayerPowerController : MonoBehaviour
             currentPower.Use();
             mana--;
             Messenger.Default.Publish(new ManaChangeMessage(mana));
+        }
+
+        if (Input.GetKeyDown(key) && mana == 0)
+        {
+            ManaOutSound = RuntimeManager.CreateInstance("event:/SFX/UI/Level/Mana/UI_Mana_Out_(Beep_002)");
+            ManaOutSound.start();
+            ManaOutSound.release();
         }
     }
 }

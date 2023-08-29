@@ -1,4 +1,5 @@
-﻿using SuperMaxim.Messaging;
+﻿using FMODUnity;
+using SuperMaxim.Messaging;
 using UnityEngine;
 
 public abstract class Power : MonoBehaviour
@@ -6,6 +7,7 @@ public abstract class Power : MonoBehaviour
     [SerializeField] private KeyCode key;
     [SerializeField] private PowerType power;
     private PlayerPowerController controller;
+    FMOD.Studio.EventInstance ChangePowerSound;
 
     private bool isEnabled;
 
@@ -36,6 +38,9 @@ public abstract class Power : MonoBehaviour
             if (!isEnabled)
             {
                 Set();
+                ChangePowerSound = RuntimeManager.CreateInstance("event:/SFX/UI/Level/Power Change/Beep_001");
+                ChangePowerSound.start();
+                ChangePowerSound.release();
             }
             else
             {

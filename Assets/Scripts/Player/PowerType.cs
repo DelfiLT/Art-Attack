@@ -1,5 +1,6 @@
 ﻿public enum PowerType
 {
     Earth,
-    Ice
+    Ice,
+    Fire
 }

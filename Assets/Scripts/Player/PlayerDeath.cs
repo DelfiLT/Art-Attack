@@ -13,10 +13,21 @@ public class PlayerDeath : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Debug.Log($"DEATH TRIGGER WITH {collision.gameObject.name}");
         if (collision.CompareTag("Water"))
         {
-            playerController.enabled = false;
-            Messenger.Default.Publish(new PlayerDeathMessage());
+            Die();
         }
+
+        if(collision.CompareTag("Ice") && collision.bounds.Contains(transform.position))
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        playerController.enabled = false;
+        Messenger.Default.Publish(new PlayerDeathMessage());
     }
 }

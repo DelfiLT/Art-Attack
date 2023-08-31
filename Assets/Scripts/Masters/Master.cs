@@ -23,7 +23,7 @@ public class Master : MonoBehaviour
     [SerializeField] private string[] dialogs;
 
     private float textSpeed = 0.2f;
-    public int index;
+    int index;
 
     void Start()
     {
@@ -58,7 +58,7 @@ public class Master : MonoBehaviour
 
         if (index == dialogs.Length - 1 && dialogUI.text == dialogs[index])
         {
-            dialogUI.text = string.Empty;
+            StartCoroutine(EndTutorial());
 
             switch (masterType)
             {
@@ -93,6 +93,12 @@ public class Master : MonoBehaviour
             dialogUI.text += letter;
             yield return new WaitForSeconds(textSpeed);
         }
+    }
+
+    IEnumerator EndTutorial()
+    {
+        yield return new WaitForSeconds(4f);
+        dialogUI.text = string.Empty;
     }
 
     public void NextLine()

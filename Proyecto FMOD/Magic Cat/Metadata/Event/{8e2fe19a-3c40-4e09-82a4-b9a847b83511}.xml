@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{8e2fe19a-3c40-4e09-82a4-b9a847b83511}">
+		<property name="color">
+			<value>Green Light 1</value>
+		</property>
 		<property name="name">
 			<value>UI_Power_Earth_Use_(FX_015)</value>
 		</property>

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{f44070c8-9af3-4dd0-bfac-57c9cdc67941}">
+		<property name="color">
+			<value>Purple</value>
+		</property>
 		<property name="name">
 			<value>UI_Mana_Out_(Beep_002)</value>
 		</property>

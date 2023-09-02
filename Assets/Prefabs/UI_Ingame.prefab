@@ -2998,7 +2998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 7841851772987642872}
-  Power: 1
+  Power: 2
 --- !u!1 &8228923885081078679
 GameObject:
   m_ObjectHideFlags: 0

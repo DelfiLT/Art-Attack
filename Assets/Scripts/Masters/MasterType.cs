@@ -1,4 +1,4 @@
-﻿public enum PowerType
+public enum MasterType
 {
     Earth,
     Ice,

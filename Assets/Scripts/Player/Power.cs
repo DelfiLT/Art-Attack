@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class Power : MonoBehaviour
 {
+    public PowerType Type { get { return power; } }
+
     [SerializeField] private KeyCode key;
     [SerializeField] private PowerType power;
     private PlayerPowerController controller;
@@ -45,6 +47,9 @@ public abstract class Power : MonoBehaviour
             else
             {
                 Unset();
+                //se hace esto acá porque si se hace dentro del unset
+                //entraría en recursividad infinita, NO INTENTARLO!!!
+                controller.SetCurrentPower(null);
             }
         }
     }

@@ -17,6 +17,32 @@ public class PlayerPowerController : MonoBehaviour
     {
         mana = maxMana;
         Messenger.Default.Publish(new ManaChangeMessage(mana));
+        Messenger.Default.Subscribe<LearnedPowerMessage>(EnablePower);
+
+        GameManager.Instance.InitPowers();
+    }
+
+    private void OnDestroy()
+    {
+        Messenger.Default.Unsubscribe<LearnedPowerMessage>(EnablePower);
+    }
+
+    private void EnablePower(LearnedPowerMessage message)
+    {
+        switch (message.Type)
+        {
+            case PowerType.Earth:
+                GetComponent<EarthPower>().enabled = true;
+                break;
+            case PowerType.Ice:
+                GetComponent<IcePower>().enabled = true;
+                break;
+            case PowerType.Fire:
+                GetComponent<FirePower>().enabled = true;
+                break;
+            default:
+                break;
+        }
     }
 
     public void SetCurrentPower(Power power)
@@ -32,12 +58,12 @@ public class PlayerPowerController : MonoBehaviour
     {
         if (Input.GetKeyDown(key) && mana > 0 && currentPower != null)
         {
-            var affectedPlatforms = new HashSet<PlatformController>();
-            Debug.Log("Platforms "+ platforms.Count);
+
             switch (currentPower.Type)
             {
                 case PowerType.Earth:
                     currentPower.Use();
+                    ConsumeMana();
                     break;
                 case PowerType.Ice:
                 case PowerType.Fire:
@@ -46,6 +72,8 @@ public class PlayerPowerController : MonoBehaviour
                         Debug.Log("Ninguna plataforma cercana");
                         return;
                     }
+
+                    var affectedPlatforms = new HashSet<PlatformController>();
 
                     var platformsArr = platforms.ToArray();
                     foreach (var platform in platformsArr)
@@ -60,16 +88,22 @@ public class PlayerPowerController : MonoBehaviour
                     {
                         platforms.Remove(p);
                     }
+
+                    if (affectedPlatforms.Count > 0)
+                    {
+                        ConsumeMana();
+                    }
                     break;
                 default:
                     break;
             }
-            if (affectedPlatforms.Count > 0)
-            {
-                mana--;
-                Messenger.Default.Publish(new ManaChangeMessage(mana));
-            }
         }
+    }
+
+    private void ConsumeMana()
+    {
+        mana--;
+        Messenger.Default.Publish(new ManaChangeMessage(mana));
     }
 
     public void AddClosePlatform(PlatformController platform)

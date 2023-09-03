@@ -94,12 +94,12 @@ GameObject:
   m_Component:
   - component: {fileID: 403446442342815120}
   - component: {fileID: 403446442342815116}
+  - component: {fileID: 140156597}
+  - component: {fileID: 373740529}
   - component: {fileID: 4975972541498973684}
   - component: {fileID: 7139473542627425031}
   - component: {fileID: 8049858960338508824}
   - component: {fileID: 1969778109066608511}
-  - component: {fileID: 373740529}
-  - component: {fileID: 140156597}
   - component: {fileID: 1389637267}
   m_Layer: 0
   m_Name: Player
@@ -142,64 +142,27 @@ CircleCollider2D:
   m_Offset: {x: 0.01, y: -0.1}
   serializedVersion: 2
   m_Radius: 0.55
---- !u!114 &4975972541498973684
-MonoBehaviour:
+--- !u!50 &140156597
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 403446442342815122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9409b12abaf3443408db6ad7f3eea754, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxMana: 3
-  key: 304
---- !u!114 &7139473542627425031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 403446442342815122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c54180fdf17d3f4c8e971bfc1532828, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  key: 49
-  power: 0
-  earthBlock: {fileID: 3316962429862238150, guid: 8a10149c0a3d0de439fc03f80ca1c36b, type: 3}
-  earthSpawn: {fileID: 403446442860519120}
---- !u!114 &8049858960338508824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 403446442342815122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0bf7fe1eef3b5d48b9a0bf9d92e23a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  key: 50
-  power: 1
---- !u!114 &1969778109066608511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 403446442342815122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8de924250fe92374fb1d07dc985ed4db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  key: 51
-  power: 2
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &373740529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,27 +197,64 @@ MonoBehaviour:
   _jumpBuffer: 0.1
   _jumpEndEarlyGravityModifier: 5
   _freeColliderIterations: 10
---- !u!50 &140156597
-Rigidbody2D:
-  serializedVersion: 4
+--- !u!114 &4975972541498973684
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 403446442342815122}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9409b12abaf3443408db6ad7f3eea754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxMana: 3
+  key: 304
+--- !u!114 &7139473542627425031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403446442342815122}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c54180fdf17d3f4c8e971bfc1532828, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 49
+  power: 0
+  earthBlock: {fileID: 3316962429862238150, guid: 8a10149c0a3d0de439fc03f80ca1c36b, type: 3}
+  earthSpawn: {fileID: 403446442860519120}
+--- !u!114 &8049858960338508824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403446442342815122}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0bf7fe1eef3b5d48b9a0bf9d92e23a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 50
+  power: 1
+--- !u!114 &1969778109066608511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403446442342815122}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de924250fe92374fb1d07dc985ed4db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 51
+  power: 2
 --- !u!114 &1389637267
 MonoBehaviour:
   m_ObjectHideFlags: 0

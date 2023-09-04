@@ -8,6 +8,10 @@ public class PlayerPowerController : MonoBehaviour
     [SerializeField] int maxMana = 3;
     [SerializeField] KeyCode key = KeyCode.LeftShift;
 
+    [SerializeField] private SpriteRenderer earthPlaceholder;
+    [SerializeField] private GameObject iceAura;
+    [SerializeField] private GameObject fireAura;
+
     int mana;
     Power currentPower;
 
@@ -50,8 +54,40 @@ public class PlayerPowerController : MonoBehaviour
         if (currentPower != null)
         {
             currentPower.Unset();
+            earthPlaceholder.enabled = false;
+            iceAura.SetActive(false);
+            fireAura.SetActive(false);
         }
+        else
+        {
+            SetAura(power.Type);
+        }
+
         currentPower = power;
+    }
+
+    private void SetAura(PowerType power)
+    {
+        switch (power)
+        {
+            case PowerType.Earth:
+                earthPlaceholder.enabled = true;
+                iceAura.SetActive(false);
+                fireAura.SetActive(false);
+                break;
+            case PowerType.Ice:
+                earthPlaceholder.enabled = false;
+                iceAura.SetActive(true);
+                fireAura.SetActive(false);
+                break;
+            case PowerType.Fire:
+                earthPlaceholder.enabled = false;
+                iceAura.SetActive(false);
+                fireAura.SetActive(true);
+                break;
+            default:
+                break;
+        }
     }
 
     private void Update()
@@ -97,6 +133,8 @@ public class PlayerPowerController : MonoBehaviour
                 default:
                     break;
             }
+
+            SetCurrentPower(null);
         }
     }
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{9f678fc8-e295-4cd8-86d0-8828ebf74850}">
+		<property name="assetPath">
+			<value>BGM_Level Fire_Loop.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>155.07691666666668</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b72a2fff-5289-4d46-bf16-aed07f94fe04}</destination>
+		</relationship>
+	</object>
+</objects>

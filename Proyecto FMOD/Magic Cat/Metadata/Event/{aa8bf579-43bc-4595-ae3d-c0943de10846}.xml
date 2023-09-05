@@ -8,7 +8,7 @@
 			<value>Beep_001</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{ff6c0b64-b691-4997-a9ab-1adc2a6bb505}</destination>
@@ -87,7 +87,7 @@
 	</object>
 	<object class="MultiSound" id="{e816ed52-502c-403b-87ff-7ff445fa2f83}">
 		<relationship name="sounds">
-			<destination>{4b93fa07-5521-4ebe-8dac-e9561ba8fd1e}</destination>
+			<destination>{79233794-ff71-4e24-af80-8930d25a967c}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{1bdc7b6a-aaf3-4eac-ab22-e3c2e2c1d4b3}">
@@ -102,9 +102,9 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{b5f4f409-33f6-4fe1-b05d-8deca033296a}" />
-	<object class="SingleSound" id="{4b93fa07-5521-4ebe-8dac-e9561ba8fd1e}">
+	<object class="SingleSound" id="{79233794-ff71-4e24-af80-8930d25a967c}">
 		<relationship name="audioFile">
-			<destination>{bfa542b3-949d-4336-b84d-b076203324d1}</destination>
+			<destination>{cdfe0575-ff60-4c55-a7cd-190958e062af}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{30c12173-1d59-4650-97d9-2d203a6328d8}" />

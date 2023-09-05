@@ -8,7 +8,7 @@
 			<value>UI_Power_Earth_Use_(FX_015)</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{77d73bc9-461f-45b3-9c95-15ba20d85b3e}</destination>
@@ -62,7 +62,11 @@
 			<destination>{b7d05059-2399-4efa-9df3-d43625cb366c}</destination>
 		</relationship>
 	</object>
-	<object class="EventAutomatableProperties" id="{5150f7dd-a8e6-45d4-a60b-8ae04d816eab}" />
+	<object class="EventAutomatableProperties" id="{5150f7dd-a8e6-45d4-a60b-8ae04d816eab}">
+		<property name="voiceStealing">
+			<value>1</value>
+		</property>
+	</object>
 	<object class="MarkerTrack" id="{1821d604-aa31-42df-b01e-5089a9791584}" />
 	<object class="Timeline" id="{16219e75-45b6-4f36-8e90-e8a7e300b93f}">
 		<property name="isProxyEnabled">
@@ -87,7 +91,7 @@
 	</object>
 	<object class="MultiSound" id="{08d1799c-c95e-4526-a9fb-71d20743e97e}">
 		<relationship name="sounds">
-			<destination>{b6bb6b16-9037-413f-b3ed-7faaaf85f17b}</destination>
+			<destination>{f5d5748a-b8ee-4264-bace-1c456261e2ac}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{96a556f4-c328-4ef9-98d4-e374f1272f9b}">
@@ -102,11 +106,22 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{d2586609-9876-4112-92ab-5f8eefcb4343}" />
-	<object class="SingleSound" id="{b6bb6b16-9037-413f-b3ed-7faaaf85f17b}">
+	<object class="SingleSound" id="{f5d5748a-b8ee-4264-bace-1c456261e2ac}">
+		<relationship name="modulators">
+			<destination>{2e18348f-0fd1-475c-9282-7ced73c71f70}</destination>
+		</relationship>
 		<relationship name="audioFile">
-			<destination>{526d4204-aec9-4d7c-b895-7718c213f519}</destination>
+			<destination>{154ec5c8-e3a9-48a2-9523-79ba1e31db36}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{5be9743d-248e-45ac-adb3-3fd729d1be71}" />
 	<object class="MixerBusFader" id="{53c3db60-b374-4c6b-847b-415b57b2da77}" />
+	<object class="RandomizerModulator" id="{2e18348f-0fd1-475c-9282-7ced73c71f70}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="amount">
+			<value>2</value>
+		</property>
+	</object>
 </objects>

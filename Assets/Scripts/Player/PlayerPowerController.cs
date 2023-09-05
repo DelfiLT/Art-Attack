@@ -2,14 +2,17 @@ using FMODUnity;
 using SuperMaxim.Messaging;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class PlayerPowerController : MonoBehaviour
 {
     [SerializeField] int maxMana = 3;
     [SerializeField] KeyCode key = KeyCode.LeftShift;
+    
+    //instancia fmod
     FMOD.Studio.EventInstance ManaOutSound;
-
+   
     [SerializeField] private SpriteRenderer earthPlaceholder;
     [SerializeField] private GameObject iceAura;
     [SerializeField] private GameObject fireAura;
@@ -139,6 +142,7 @@ public class PlayerPowerController : MonoBehaviour
             SetCurrentPower(null);
         }
 
+        //Sonido cuando te quedas sin maná
         if (Input.GetKeyDown(key) && mana == 0)
         {
             ManaOutSound = RuntimeManager.CreateInstance("event:/SFX/UI/Level/Mana/UI_Mana_Out_(Beep_002)");
@@ -146,6 +150,8 @@ public class PlayerPowerController : MonoBehaviour
             ManaOutSound.release();
         }
     }
+
+
 
     private void ConsumeMana()
     {

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{7ea7c9e0-9d2b-4311-be16-b35330bfe6fc}">
+		<property name="assetPath">
+			<value>SFX_UI_Fire Power.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.6277291666666667</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b72a2fff-5289-4d46-bf16-aed07f94fe04}</destination>
+		</relationship>
+	</object>
+</objects>

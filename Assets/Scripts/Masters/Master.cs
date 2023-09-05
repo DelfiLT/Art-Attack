@@ -1,22 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using TarodevController;
 using TMPro;
-using Unity.VisualScripting;
+using UnityEngine;
 
 public class Master : MonoBehaviour
 {
-    private EarthPower EarthPowerScript;
-    private IcePower IcePowerScript;
-    private FirePower FirePowerScript;
+    PlayerController playerController;
 
     [Header("Master Type")]
     [SerializeField] private MasterType masterType;
-
-    [Header("Power's UI")]
-    [SerializeField] private GameObject earthPowerUI;
-    [SerializeField] private GameObject icePowerUI;
-    [SerializeField] private GameObject firePowerUI;
 
     [Header("Master Dialogs")]
     [SerializeField] private TextMeshProUGUI dialogUI;
@@ -27,18 +19,6 @@ public class Master : MonoBehaviour
 
     void Start()
     {
-        EarthPowerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<EarthPower>();
-        IcePowerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<IcePower>();
-        FirePowerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<FirePower>();
-
-        EarthPowerScript.enabled = false;
-        IcePowerScript.enabled = false;
-        FirePowerScript.enabled = false;
-
-        earthPowerUI.SetActive(false);
-        icePowerUI.SetActive(false);
-        firePowerUI.SetActive(false);
-
         dialogUI.text = string.Empty;
     }
 
@@ -63,16 +43,13 @@ public class Master : MonoBehaviour
             switch (masterType)
             {
                 case MasterType.Earth:
-                    EarthPowerScript.enabled = true;
-                    earthPowerUI.SetActive(true);
+                    GameManager.Instance.AddPower(PowerType.Earth);
                     break;
                 case MasterType.Ice:
-                    IcePowerScript.enabled = true;
-                    icePowerUI.SetActive(true);
+                    GameManager.Instance.AddPower(PowerType.Ice);
                     break;
                 case MasterType.Fire:
-                    FirePowerScript.enabled = true;
-                    firePowerUI.SetActive(true);
+                    GameManager.Instance.AddPower(PowerType.Fire);
                     break;
                     default:
                     break ;
@@ -109,12 +86,23 @@ public class Master : MonoBehaviour
             dialogUI.text = string.Empty;
             StartCoroutine(WriteLine());
         }
+        else
+        {
+            OnDialogEnd();
+        }
+    }
+
+    private void OnDialogEnd()
+    {
+        playerController.enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Aura"))
         {
+            playerController = collision.GetComponentInParent<PlayerController>();
+            playerController.enabled = false;
             StartDialogue();
         }
     }

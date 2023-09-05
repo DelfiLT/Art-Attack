@@ -10,6 +10,10 @@ public class PlayerPowerController : MonoBehaviour
     [SerializeField] KeyCode key = KeyCode.LeftShift;
     FMOD.Studio.EventInstance ManaOutSound;
 
+    [SerializeField] private SpriteRenderer earthPlaceholder;
+    [SerializeField] private GameObject iceAura;
+    [SerializeField] private GameObject fireAura;
+
     int mana;
     Power currentPower;
 
@@ -19,6 +23,32 @@ public class PlayerPowerController : MonoBehaviour
     {
         mana = maxMana;
         Messenger.Default.Publish(new ManaChangeMessage(mana));
+        Messenger.Default.Subscribe<LearnedPowerMessage>(EnablePower);
+
+        GameManager.Instance.InitPowers();
+    }
+
+    private void OnDestroy()
+    {
+        Messenger.Default.Unsubscribe<LearnedPowerMessage>(EnablePower);
+    }
+
+    private void EnablePower(LearnedPowerMessage message)
+    {
+        switch (message.Type)
+        {
+            case PowerType.Earth:
+                GetComponent<EarthPower>().enabled = true;
+                break;
+            case PowerType.Ice:
+                GetComponent<IcePower>().enabled = true;
+                break;
+            case PowerType.Fire:
+                GetComponent<FirePower>().enabled = true;
+                break;
+            default:
+                break;
+        }
     }
 
     public void SetCurrentPower(Power power)
@@ -26,20 +56,52 @@ public class PlayerPowerController : MonoBehaviour
         if (currentPower != null)
         {
             currentPower.Unset();
+            earthPlaceholder.enabled = false;
+            iceAura.SetActive(false);
+            fireAura.SetActive(false);
         }
+        else
+        {
+            SetAura(power.Type);
+        }
+
         currentPower = power;
+    }
+
+    private void SetAura(PowerType power)
+    {
+        switch (power)
+        {
+            case PowerType.Earth:
+                earthPlaceholder.enabled = true;
+                iceAura.SetActive(false);
+                fireAura.SetActive(false);
+                break;
+            case PowerType.Ice:
+                earthPlaceholder.enabled = false;
+                iceAura.SetActive(true);
+                fireAura.SetActive(false);
+                break;
+            case PowerType.Fire:
+                earthPlaceholder.enabled = false;
+                iceAura.SetActive(false);
+                fireAura.SetActive(true);
+                break;
+            default:
+                break;
+        }
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(key) && mana > 0 && currentPower != null)
         {
-            var affectedPlatforms = new HashSet<PlatformController>();
-            Debug.Log("Platforms "+ platforms.Count);
+
             switch (currentPower.Type)
             {
                 case PowerType.Earth:
                     currentPower.Use();
+                    ConsumeMana();
                     break;
                 case PowerType.Ice:
                 case PowerType.Fire:
@@ -48,6 +110,8 @@ public class PlayerPowerController : MonoBehaviour
                         Debug.Log("Ninguna plataforma cercana");
                         return;
                     }
+
+                    var affectedPlatforms = new HashSet<PlatformController>();
 
                     var platformsArr = platforms.ToArray();
                     foreach (var platform in platformsArr)
@@ -62,15 +126,17 @@ public class PlayerPowerController : MonoBehaviour
                     {
                         platforms.Remove(p);
                     }
+
+                    if (affectedPlatforms.Count > 0)
+                    {
+                        ConsumeMana();
+                    }
                     break;
                 default:
                     break;
             }
-            if (affectedPlatforms.Count > 0)
-            {
-                mana--;
-                Messenger.Default.Publish(new ManaChangeMessage(mana));
-            }
+
+            SetCurrentPower(null);
         }
 
         if (Input.GetKeyDown(key) && mana == 0)
@@ -79,6 +145,12 @@ public class PlayerPowerController : MonoBehaviour
             ManaOutSound.start();
             ManaOutSound.release();
         }
+    }
+
+    private void ConsumeMana()
+    {
+        mana--;
+        Messenger.Default.Publish(new ManaChangeMessage(mana));
     }
 
     public void AddClosePlatform(PlatformController platform)

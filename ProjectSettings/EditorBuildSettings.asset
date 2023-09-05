@@ -6,11 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Menu.unity
+    path: Assets/Scenes/General/Menu.unity
     guid: c9470d641c527c9439a91f1b97b13f2a
   - enabled: 1
-    path: Assets/Scenes/Level1.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/Scenes/General/Keys.unity
+    guid: c9e05af44cbe751439a1c58caa7d3032
+  - enabled: 1
+    path: Assets/Scenes/General/Victory.unity
+    guid: a9fcb1ae748bb8843b944570ca81ec05
+  - enabled: 1
+    path: Assets/Scenes/Earth/scene_earth_01.unity
+    guid: e689a07940304d14197a2b53e57f15ae
+  - enabled: 1
+    path: Assets/Scenes/Ice/scene_ice_00.unity
+    guid: 4f49dbfd0ba5ff94bb67ab194bd5b382
   - enabled: 1
     path: Assets/Scenes/Ice/scene_ice_01.unity
     guid: b6d12fc88d929e4449a835f921794dfe
@@ -20,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ice/scene_ice_03.unity
     guid: e1f364aea49933f439c9a6a53a2ef1f9
+  - enabled: 1
+    path: Assets/Scenes/Fire/scene_fire_01.unity
+    guid: 70633622b2d9f1b4eae22f310194a1dc
   m_configObjects: {}

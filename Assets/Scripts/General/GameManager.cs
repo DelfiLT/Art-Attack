@@ -1,18 +1,44 @@
-using System.Collections;
+using SuperMaxim.Messaging;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private string nextLevel;
+    public static GameManager Instance;
+
+    private void Awake()
+    {
+        if (Instance is null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private List<PowerType> powers = new();
 
     void Start() {}
 
     void Update() {}
 
-    void LoadNextLevel()
+    public void AddPower(PowerType power)
     {
-        if(nextLevel != null) SceneManager.LoadScene(nextLevel);
+        if (!powers.Contains(power))
+        {
+            powers.Add(power);
+            InitPowers();
+        }
+    }
+
+    public void InitPowers()
+    {
+        foreach (var power in powers)
+        {
+            Messenger.Default.Publish(new LearnedPowerMessage(power));
+        }
     }
 }

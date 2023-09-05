@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 56cfee9a835634146962e8843dc4c3c2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d480310f3f0da0e4bb609e8e4d6bc79c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,9 +101,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   masterType: 1
-  earthPowerUI: {fileID: 0}
-  icePowerUI: {fileID: 0}
-  firePowerUI: {fileID: 0}
   dialogUI: {fileID: 7980544338809426289}
   dialogs:
   - Veo que has aprobado la primer prueba michi...

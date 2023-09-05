@@ -12,7 +12,10 @@ public class PlayerPowerController : MonoBehaviour
     
     //instancia fmod
     FMOD.Studio.EventInstance ManaOutSound;
-   
+    FMOD.Studio.EventInstance EarthPowerSound;
+    FMOD.Studio.EventInstance FirePowerSound;
+    FMOD.Studio.EventInstance IcePowerSound;
+
     [SerializeField] private SpriteRenderer earthPlaceholder;
     [SerializeField] private GameObject iceAura;
     [SerializeField] private GameObject fireAura;
@@ -105,6 +108,9 @@ public class PlayerPowerController : MonoBehaviour
                 case PowerType.Earth:
                     currentPower.Use();
                     ConsumeMana();
+                    EarthPowerSound = RuntimeManager.CreateInstance("event:/SFX/Player/Powers/UI_Power_Earth_Use_(FX_015)");
+                    EarthPowerSound.start();
+                    EarthPowerSound.release();
                     break;
                 case PowerType.Ice:
                 case PowerType.Fire:
@@ -133,6 +139,18 @@ public class PlayerPowerController : MonoBehaviour
                     if (affectedPlatforms.Count > 0)
                     {
                         ConsumeMana();
+                        if (currentPower.Type == PowerType.Fire) 
+                        {
+                            FirePowerSound = RuntimeManager.CreateInstance("event:/SFX/Player/Powers/UI_Power_Fire_Use");
+                            FirePowerSound.start();
+                            FirePowerSound.release();
+                        }
+                        else 
+                        {
+                            IcePowerSound = RuntimeManager.CreateInstance("event:/SFX/Player/Powers/UI_Power_Ice_Use_(FX_036)");
+                            IcePowerSound.start();
+                            IcePowerSound.release();
+                        }
                     }
                     break;
                 default:

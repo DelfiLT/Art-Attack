@@ -38,13 +38,12 @@ public class SceneController : MonoBehaviour
     public void RestartLevel()
     {
         CheckCurrentLevel();
-        GameManager.Instance.ResetPowers();
-        SceneManager.LoadScene(currentLevel);
+        LoadScene(currentLevel);
     }
 
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene("Menu");
+        LoadScene("Menu");
     }
 
     public void GoToNexLevel()
@@ -54,7 +53,7 @@ public class SceneController : MonoBehaviour
         int index = levelsList.IndexOf(currentLevel) + 1;
         if (index < levelsList.Count)
         {
-            SceneManager.LoadScene(levelsList[index]); ;
+            LoadScene(levelsList[index]); ;
         }
         else
         {
@@ -75,6 +74,8 @@ public class SceneController : MonoBehaviour
         }
         int currIndex = levelsList.IndexOf(currentLevel);
         int otherIndex = levelsList.IndexOf(sceneName);
+
+        //Debug.Log($"UNLOCK id {otherIndex} {sceneName} CURR id {currIndex} {currentLevel}");
 
         return otherIndex < currIndex;
     }

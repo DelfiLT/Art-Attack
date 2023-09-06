@@ -31,6 +31,7 @@ public class PlayerPowerController : MonoBehaviour
         Messenger.Default.Publish(new ManaChangeMessage(mana));
         Messenger.Default.Subscribe<LearnedPowerMessage>(EnablePower);
 
+        GameManager.Instance.ResetPowers();
         GameManager.Instance.InitPowers();
     }
 

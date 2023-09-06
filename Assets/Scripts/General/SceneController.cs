@@ -31,13 +31,14 @@ public class SceneController : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         currentLevel = sceneName;
+        GameManager.Instance.ResetPowers();
         SceneManager.LoadScene(sceneName);
     }
 
     public void RestartLevel()
     {
         CheckCurrentLevel();
-
+        GameManager.Instance.ResetPowers();
         SceneManager.LoadScene(currentLevel);
     }
 
@@ -64,6 +65,18 @@ public class SceneController : MonoBehaviour
     private void CheckCurrentLevel()
     {
         currentLevel = SceneManager.GetActiveScene().name;
+    }
+
+    public bool IsLevelCompleted(string sceneName)
+    {
+        if (string.IsNullOrEmpty(currentLevel))
+        {
+            CheckCurrentLevel();
+        }
+        int currIndex = levelsList.IndexOf(currentLevel);
+        int otherIndex = levelsList.IndexOf(sceneName);
+
+        return otherIndex < currIndex;
     }
 
     public void QuitGame()

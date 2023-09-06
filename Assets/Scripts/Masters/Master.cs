@@ -16,6 +16,7 @@ public class Master : MonoBehaviour
 
     private float textSpeed = 0.2f;
     int index;
+    bool dialogCompleted = false;
 
     void Start()
     {
@@ -33,26 +34,6 @@ public class Master : MonoBehaviour
             {
                 StopAllCoroutines();
                 dialogUI.text = dialogs[index];
-            }
-        }
-
-        if (index == dialogs.Length - 1 && dialogUI.text == dialogs[index])
-        {
-            StartCoroutine(EndTutorial());
-
-            switch (masterType)
-            {
-                case MasterType.Earth:
-                    GameManager.Instance.AddPower(PowerType.Earth);
-                    break;
-                case MasterType.Ice:
-                    GameManager.Instance.AddPower(PowerType.Ice);
-                    break;
-                case MasterType.Fire:
-                    GameManager.Instance.AddPower(PowerType.Fire);
-                    break;
-                    default:
-                    break ;
             }
         }
     }
@@ -88,6 +69,7 @@ public class Master : MonoBehaviour
         }
         else
         {
+            dialogCompleted = true;
             OnDialogEnd();
         }
     }
@@ -95,20 +77,32 @@ public class Master : MonoBehaviour
     private void OnDialogEnd()
     {
         playerController.enabled = true;
+
+        switch (masterType)
+        {
+            case MasterType.Earth:
+                GameManager.Instance.AddPower(PowerType.Earth);
+                break;
+            case MasterType.Ice:
+                GameManager.Instance.AddPower(PowerType.Ice);
+                break;
+            case MasterType.Fire:
+                GameManager.Instance.AddPower(PowerType.Fire);
+                break;
+            default:
+                break;
+        }
+
+        StartCoroutine(EndTutorial());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Aura"))
+        if (!dialogCompleted && collision.CompareTag("Aura"))
         {
             playerController = collision.GetComponentInParent<PlayerController>();
             playerController.enabled = false;
             StartDialogue();
         }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        this.enabled = false;
     }
 }

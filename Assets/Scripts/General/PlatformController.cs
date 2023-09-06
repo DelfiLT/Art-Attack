@@ -1,6 +1,3 @@
-using SuperMaxim.Messaging;
-using System;
-using System.Collections;
 using UnityEngine;
 
 public class PlatformController : MonoBehaviour
@@ -9,36 +6,13 @@ public class PlatformController : MonoBehaviour
     [SerializeField] private GameObject ice;
     [SerializeField] private GameObject water;
     [Header("Platform values")]
-    //[SerializeField] private float changeTime;
     [SerializeField] public PlatformType defaultState;
     
     public PlatformType CurrentState { get; private set; }
 
-    //private PlatformTrigger platformTrigger;
-
     void Start()
     {
         SetState(defaultState);
-
-        //Messenger.Default.Subscribe<ElementChangeMessage>(HandleChangeElement);
-    }
-
-    private void OnDestroy()
-    {
-        //Messenger.Default.Unsubscribe<ElementChangeMessage>(HandleChangeElement);
-    }
-
-    void HandleChangeElement(ElementChangeMessage message)
-    {
-        //if (message.Element == PowerType.Ice && platformType == PlatformType.Water)
-        //{
-        //    StartCoroutine(ChangeToIce());
-        //}
-
-        //if (message.Element == PowerType.Water)
-        //{
-        //    StartCoroutine(ChangeToWater());
-        //}
     }
 
     public bool AlreadyChanged(PowerType power)
@@ -63,7 +37,6 @@ public class PlatformController : MonoBehaviour
         }
 
         SetState(CurrentState);
-        Debug.Log($"Plataforma {gameObject.name} cambiada a {CurrentState}");
     }
     
     private void SetState(PlatformType state)
@@ -83,22 +56,4 @@ public class PlatformController : MonoBehaviour
         }
         CurrentState = state;
     }
-
-    //IEnumerator ChangeToIce()
-    //{
-    //    ice.SetActive(true);
-    //    water.SetActive(false);
-    //    yield return new WaitForSeconds(changeTime);
-    //    ice.SetActive(false);
-    //    water.SetActive(true);
-    //}
-
-    //IEnumerator ChangeToWater()
-    //{
-    //    ice.SetActive(false);
-    //    water.SetActive(true);
-    //    yield return new WaitForSeconds(changeTime);
-    //    ice.SetActive(true);
-    //    water.SetActive(false);
-    //}
 }

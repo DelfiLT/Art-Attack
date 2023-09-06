@@ -4822,6 +4822,8 @@ GameObject:
   m_Component:
   - component: {fileID: 403446442284996138}
   - component: {fileID: 403446442284996137}
+  - component: {fileID: 4533373470921319223}
+  - component: {fileID: 5977320972348601775}
   m_Layer: 0
   m_Name: pepi_wizard
   m_TagString: Untagged
@@ -4837,12 +4839,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 403446442284996139}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.26, y: -0.03, z: 0}
+  m_LocalPosition: {x: 0.02, y: 0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 403446442342815120}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &403446442284996137
 SpriteRenderer:
@@ -4885,7 +4887,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f556fec55326aee4eac08bc9072dccd2, type: 3}
+  m_Sprite: {fileID: 988661613, guid: 103e1e70330105144bde3937e3c0190c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4896,6 +4898,40 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4533373470921319223
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403446442284996139}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f777168baf1c9b448a5819fcaa0a37e7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5977320972348601775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403446442284996139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18297356b7fd95143bd7f1dcad5705e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _anim: {fileID: 4533373470921319223}
 --- !u!1 &403446442342815122
 GameObject:
   m_ObjectHideFlags: 0
@@ -4932,8 +4968,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 403446442860519120}
   - {fileID: 403446442284996138}
+  - {fileID: 403446442860519120}
   - {fileID: 3764562710407188502}
   - {fileID: 537326364126297306}
   - {fileID: 8784663220541747323}
@@ -4953,9 +4989,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.01, y: -0.1}
+  m_Offset: {x: 0.00999999, y: -0.023481011}
   serializedVersion: 2
-  m_Radius: 0.55
+  m_Radius: 0.47348106
 --- !u!50 &140156597
 Rigidbody2D:
   serializedVersion: 4
@@ -4991,12 +5027,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0.47, y: 0.56, z: 0}
+    m_Extent: {x: 0.44, y: 0.38, z: 0}
   _groundLayer:
     serializedVersion: 2
     m_Bits: 72
   _detectorCount: 3
-  _detectionRayLength: 0.1
+  _detectionRayLength: 0.14
   _rayBuffer: 0.1
   _acceleration: 90
   _moveClamp: 8
@@ -5114,7 +5150,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 403446442342815120}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6421038921661063949
 SpriteRenderer:

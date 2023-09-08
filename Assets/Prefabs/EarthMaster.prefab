@@ -101,20 +101,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   masterType: 0
-  earthPowerUI: {fileID: 0}
-  icePowerUI: {fileID: 0}
-  firePowerUI: {fileID: 0}
   dialogUI: {fileID: 7525124247634625803}
   dialogs:
   - Bienvenido a las cavernas michi
   - "Ac\xE1 aprenderas a controlar todos tus poderes"
   - 'Empecemos con el mas basico: EL PODER DE INVOCACION DE TIERRA'
   - Es un hechizo muy simple pero muy util
-  - Todo lo que debes hacer es seleccionar la tecla 1, posicionarla y apretar SHIFT
+  - Todo lo que debes hacer es seleccionar el numero 1, posicionarla y apretar SHIFT
     para colocarla
   - Es recomendable utilizarla para alcanzar lugares que no puedes saltar
   - Aqui tienes el poder, prueba usarlo en ese muro
-  index: 0
 --- !u!61 &7525124247377025977
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -286,6 +282,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7525124247682778147}
   - component: {fileID: 7525124247682778146}
+  - component: {fileID: 5668197551619826352}
   m_Layer: 0
   m_Name: earth
   m_TagString: Untagged
@@ -301,7 +298,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7525124247682778149}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.35236263, y: -0.041999996, z: 0}
+  m_LocalPosition: {x: -0.348, y: -0.094, z: 0}
   m_LocalScale: {x: 0.875, y: 0.875, z: 0.875}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -360,6 +357,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &5668197551619826352
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7525124247682778149}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 46ae7d55355cfff4dada6e8160d7d88a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7525124248050442227
 GameObject:
   m_ObjectHideFlags: 0

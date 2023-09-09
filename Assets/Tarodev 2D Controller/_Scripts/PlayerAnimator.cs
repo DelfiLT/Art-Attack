@@ -17,6 +17,7 @@ namespace TarodevController
         void Update()
         {
             if (_player == null) return;
+            if (Time.timeScale == 0) return;
 
             if (_player.Input.X != 0) transform.localScale = new Vector3(_player.Input.X > 0 ? 1 : -1, 1, 1);
 

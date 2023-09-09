@@ -15,6 +15,10 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private GameObject GameOverPanel;
+    [SerializeField]
+    private GameObject PausePanel;
+
+    private bool paused;
 
     private void Start()
     {
@@ -28,6 +32,17 @@ public class UIManager : MonoBehaviour
     {
         Messenger.Default.Unsubscribe<PlayerDeathMessage>(HandlePlayerDeat);
         Messenger.Default.Unsubscribe<LearnedPowerMessage>(HandleLearnedPower);
+        Time.timeScale = 1;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            paused = !paused;
+            Time.timeScale = paused ? 0 : 1;
+            PausePanel.SetActive(paused);
+        }
     }
 
     private void HandlePlayerDeat(PlayerDeathMessage message)
